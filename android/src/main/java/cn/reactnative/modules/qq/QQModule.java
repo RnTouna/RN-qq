@@ -152,6 +152,11 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
     private void _shareToQQ(ReadableMap data, int scene) {
         this.isLogin = false;
         Bundle bundle = new Bundle();
+        String type = RCTQQShareTypeNews;
+        if (data.hasKey(RCTQQShareType)) {
+            type = data.getString(RCTQQShareType);
+        }
+
         if (data.hasKey(RCTQQShareTitle)){
             bundle.putString(QQShare.SHARE_TO_QQ_TITLE, data.getString(RCTQQShareTitle));
         }
@@ -161,18 +166,14 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
         if (data.hasKey(RCTQQShareWebpageUrl)){
             bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, data.getString(RCTQQShareWebpageUrl));
         }
-        if (data.hasKey(RCTQQShareImageUrl)){
+        if (!type.equals(RCTQQShareTypeImage) && data.hasKey(RCTQQShareImageUrl)){
             bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, data.getString(RCTQQShareImageUrl));
         }
         if (data.hasKey("appName")){
             bundle.putString(QQShare.SHARE_TO_QQ_APP_NAME, data.getString("appName"));
         }
 
-        String type = RCTQQShareTypeNews;
-        if (data.hasKey(RCTQQShareType)) {
-            type = data.getString(RCTQQShareType);
-        }
-
+        
         if (type.equals(RCTQQShareTypeNews)){
             bundle.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         } else if (type.equals(RCTQQShareTypeImage)){
