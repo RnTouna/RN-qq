@@ -172,8 +172,6 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
         if (data.hasKey("appName")){
             bundle.putString(QQShare.SHARE_TO_QQ_APP_NAME, data.getString("appName"));
         }
-
-        
         if (type.equals(RCTQQShareTypeNews)){
             bundle.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         } else if (type.equals(RCTQQShareTypeImage)){
