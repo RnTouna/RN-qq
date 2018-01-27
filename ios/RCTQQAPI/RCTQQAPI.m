@@ -167,7 +167,7 @@ RCT_EXPORT_METHOD(logout)
     else if ([type isEqualToString: RCTQQShareTypeImage]) {
         NSData *imgData = UIImageJPEGRepresentation(image, 1);
         message = [QQApiImageObject objectWithData:imgData
-                                  previewImageData:imgData
+                                  previewImageData:nil
                                              title:title
                                        description:description];
     }
